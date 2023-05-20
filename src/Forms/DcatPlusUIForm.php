@@ -1,7 +1,6 @@
 <?php
 
 namespace Celaraze\DcatPlus\Forms;
-
 use Celaraze\DcatPlus\ServiceProvider;
 use Celaraze\DcatPlus\Support;
 use Dcat\Admin\Widgets\Form;
