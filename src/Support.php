@@ -57,7 +57,6 @@ class Support
         } else {
             $site_url = admin_setting('site_url');
         }
-
         if (empty(admin_setting('site_debug'))) {
             $site_debug = true;
         } else {
@@ -83,10 +82,9 @@ class Support
          */
         config([
             'app.url' => $site_url,
-            'app.debug' => (bool)$site_debug,
+            'app.debug' => (bool) admin_setting('site_debug'),
             'app.locale' => admin_setting('site_lang'),
             'app.fallback_locale' => admin_setting('site_lang'),
-
             'admin.title' => admin_setting('site_title'),
             'admin.logo' => $logo,
             'admin.logo-mini' => $logo_mini,
