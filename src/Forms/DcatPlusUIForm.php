@@ -19,8 +19,8 @@ class DcatPlusUIForm extends Form
         admin_setting($input);
         return $this
             ->response()
-            ->success('站点配置更新成功！')
-            ->refresh();
+            ->success('UI配置更新成功！')
+            ->location();
     }
 
     /**

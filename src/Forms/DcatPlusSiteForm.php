@@ -20,7 +20,7 @@ class DcatPlusSiteForm extends Form
         return $this
             ->response()
             ->success('站点配置更新成功！')
-            ->refresh();
+            ->location();
     }
 
     /**
