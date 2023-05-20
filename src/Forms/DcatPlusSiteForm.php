@@ -45,7 +45,7 @@ class DcatPlusSiteForm extends Form
             ->uniqueName()
             ->default(admin_setting('site_logo_mini'));
         $this->switch('site_debug', Support::trans('main.site_debug'))
-            ->help('*必须在env中打开APP_DEBUG设为true，打开显示异常捕获信息，关闭则只返回 500 状态码')
+            ->help('*必须在env中打开APP_DEBUG设为 true，打开显示开发工具和异常捕获信息，关闭则只返回500状态码')
             ->default(admin_setting('site_debug'));
         $this->radio('site_lang', Support::trans('main.site_lang'))
             ->options([
