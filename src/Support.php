@@ -31,11 +31,15 @@ class Support
         /**
          * 处理站点LOGO自定义
          */
-        if (empty(admin_setting('site_logo'))) {
-            $logo = admin_setting('site_logo_text');
+        $horizontal_menu = false;
+        $site_logo = admin_setting('site_logo');
+        $site_logo_mini = admin_setting('site_logo_mini');
+        $site_logo_text = admin_setting('site_logo_text');
+
+        if (empty($site_logo) || empty($site_logo_mini) || $horizontal_menu) {
+            $logo = $site_logo_text;
         } else {
-            $logo = Storage::disk(config('admin.upload.disk'))->url(admin_setting('site_logo'));
-            $logo = "<img src='$logo'>";
+            $logo = "<img src='" . Storage::disk(config('admin.upload.disk'))->url($site_logo) . "'>";
         }
 
         /**
@@ -51,12 +55,14 @@ class Support
         /**
          * 处理站点名称
          */
-        $horizontal_menu = false;
+        // 水平菜单
+        
         if (empty(admin_setting('site_url'))) {
             $site_url = 'http://localhost';
         } else {
             $site_url = admin_setting('site_url');
         }
+
         if (empty(admin_setting('site_debug'))) {
             $site_debug = true;
         } else {
@@ -76,6 +82,7 @@ class Support
                 $horizontal_menu = true;
             }
         }
+
 
         /**
          * 复写admin站点配置
