@@ -36,6 +36,7 @@ class DcatPlusUIForm extends Form
             'blue' => '蓝',
             'blue-light' => '亮蓝',
             'green' => '墨绿',
+            'mypink' => '粉红',
         ];
         foreach (explode(",", ServiceProvider::setting('additional_theme_colors')) as $value) {
             if (!empty($value)) {
