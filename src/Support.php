@@ -31,17 +31,13 @@ class Support
         /**
          * 处理站点LOGO自定义
          */
-        $horizontal_menu = false;
-        $site_logo = admin_setting('site_logo');
-        $site_logo_mini = admin_setting('site_logo_mini');
-        $site_logo_text = admin_setting('site_logo_text');
-
-        if (empty($site_logo) || empty($site_logo_mini) || $horizontal_menu) {
-            $logo = $site_logo_text;
+        if (empty(admin_setting('site_logo')) || empty(admin_setting('site_logo_mini'))) {
+            $logo = admin_setting('site_logo_text');
         } else {
-            $logo = "<img src='" . Storage::disk(config('admin.upload.disk'))->url($site_logo) . "'>";
+            $logo = Storage::disk(config('admin.upload.disk'))->url(admin_setting('site_logo'));
+            $logo = "<img src='$logo'>";
         }
-
+        
         /**
          * 处理站点LOGO-MINI自定义
          */
@@ -51,22 +47,16 @@ class Support
             $logo_mini = Storage::disk(config('admin.upload.disk'))->url(admin_setting('site_logo_mini'));
             $logo_mini = "<img src='$logo_mini'>";
         }
-
+        
+ 
         /**
          * 处理站点名称
          */
-        // 水平菜单
-        
+        $horizontal_menu = false;
         if (empty(admin_setting('site_url'))) {
             $site_url = 'http://localhost';
         } else {
             $site_url = admin_setting('site_url');
-        }
-
-        if (empty(admin_setting('site_debug'))) {
-            $site_debug = true;
-        } else {
-            $site_debug = admin_setting('site_debug');
         }
 
         if (empty(admin_setting('theme_color'))) {
@@ -80,10 +70,11 @@ class Support
             $sidebar_style = admin_setting('sidebar_style');
             if ($sidebar_style == 'horizontal_menu') {
                 $horizontal_menu = true;
+                // 处理水平菜单
+                $logo = admin_setting('site_logo_text');
             }
         }
-
-
+        
         /**
          * 复写admin站点配置
          */
